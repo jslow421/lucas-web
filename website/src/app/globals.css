@@ -24,3 +24,19 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.background-texture {
+  position: fixed;
+  background-size: 128px;
+  background-repeat: repeat;
+  background-image: url('/background-texture.png');
+  opacity: 0.075;
+  border-radius: 0;
+}
+
+.gradient-text {
+  background:
+    radial-gradient(61% 200% at 31% 37.6%, rgb(56, 182, 255) 0%, rgba(255, 255, 255, 0.35) 100%);
+  WebkitBackgroundClip: text;
+  WebkitTextFillColor: transparent;
+}

@@ -17,7 +17,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="w-full shadow-sm sticky top-0 z-50 text-white p-6">
+    <header className="w-full shadow-sm sticky top-0 text-white p-6">
       <nav
         className="flex items-center justify-between max-w-6xl mx-auto px-4 py-2 text-white"
         aria-label="Top-level navigation"
@@ -51,7 +51,7 @@ export default function Header() {
             aria-label="Open menu"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Bars3Icon className="w-7 h-7 text-gray-900" />
+            <Bars3Icon className="w-7 h-7 text-white" />
           </button>
         </div>
       </nav>
@@ -62,7 +62,7 @@ export default function Header() {
         onClose={setMobileMenuOpen}
         className="md:hidden"
       >
-        <div className="fixed inset-0 z-50 bg-black/30" aria-hidden="true" />
+        <div className="fixed inset-0 bg-black/30" aria-hidden="true" />
         <DialogPanel className="fixed inset-y-0 right-0 w-4/5 max-w-xs bg-zinc-900 p-6 flex flex-col shadow-lg focus:outline-none">
           <div className="flex items-center justify-between mb-8">
             <button
@@ -74,11 +74,21 @@ export default function Header() {
             </button>
           </div>
           <div className="flex flex-col gap-6 mt-4">
+            <Link
+              href="/"
+              className="text-white text-lg font-medium no-underline hover:text-blue-400 transition-colors px-2 py-2 rounded cursor-pointer"
+              onClick={() => {
+                setMobileMenuOpen(false);
+                console.log("clicked");
+              }}
+            >
+              Home
+            </Link>
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-white text-lg font-medium no-underline hover:text-blue-400 transition-colors px-2 py-2 rounded"
+                className="text-white text-lg font-medium no-underline hover:text-blue-400 transition-colors px-2 py-2 rounded cursor-pointer"
                 onClick={() => {
                   setMobileMenuOpen(false);
                   console.log("clicked");
