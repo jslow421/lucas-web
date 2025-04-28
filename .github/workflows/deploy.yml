@@ -5,36 +5,40 @@ on:
     branches:
       - main
 
+permissions:
+  id-token: write # Required for OIDC authentication
+  contents: read # Required for checkout
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: "23"
+          cache: "npm"
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build Next.js application
         run: npm run build
 
       - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
+        uses: aws-actions/configure-aws-credentials@v4
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ secrets.AWS_BUILD_ROLE_ARN }}
           aws-region: us-east-1
 
       - name: Sync build to S3
         run: |
-          aws s3 sync out/ s3://your-s3-bucket-name --delete
+          aws s3 sync out/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation --distribution-id your-distribution-id --paths "/*"
+          aws cloudfront create-invalidation --distribution-id ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }} --paths "/*"
