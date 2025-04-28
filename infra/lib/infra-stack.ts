@@ -13,13 +13,16 @@ export class LucasSiteStack extends cdk.Stack {
       bucketName: "lucas-slowik-website",
       removalPolicy: cdk.RemovalPolicy.DESTROY,
       autoDeleteObjects: true,
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
     });
 
+    const lucasOriginAccessControl = new cloudfront.S3OriginAccessControl(
+      this,
+      "LucasSiteS3OAC"
+    );
+
     const origin = origins.S3BucketOrigin.withOriginAccessControl(bucket, {
-      originAccessControl: new cloudfront.S3OriginAccessControl(
-        this,
-        "LucasSiteS3OAC"
-      ),
+      originAccessControl: lucasOriginAccessControl,
       originAccessLevels: [cloudfront.AccessLevel.READ],
       originPath: "/",
       connectionTimeout: cdk.Duration.seconds(10),
@@ -28,8 +31,12 @@ export class LucasSiteStack extends cdk.Stack {
 
     // Cloudfront distribution
     new cloudfront.Distribution(this, "LucasSiteDistribution", {
+      defaultRootObject: "index.html",
       defaultBehavior: {
         origin: origin,
+        viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+        allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+        cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD,
       },
     });
   }

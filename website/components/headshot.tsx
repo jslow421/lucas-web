@@ -3,7 +3,7 @@ export default function Headshot() {
   return (
     <div className="flex w-full h-full justify-center items-center">
       <Image
-        src="/lucas-headshot.jpeg"
+        src="lucas-headshot.jpeg"
         alt="Headshot"
         width={100}
         height={100}
