@@ -1,16 +1,36 @@
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-// import * as sqs from 'aws-cdk-lib/aws-sqs';
+import * as cdk from "aws-cdk-lib";
+import * as cloudfront from "aws-cdk-lib/aws-cloudfront";
+import * as origins from "aws-cdk-lib/aws-cloudfront-origins";
+import * as s3 from "aws-cdk-lib/aws-s3";
+import { Construct } from "constructs";
 
-export class InfraStack extends cdk.Stack {
+export class LucasSiteStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    // The code that defines your stack goes here
+    // S3 Bucket
+    const bucket = new s3.Bucket(this, "LucasSiteBucket", {
+      bucketName: "lucas-slowik-website",
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      autoDeleteObjects: true,
+    });
 
-    // example resource
-    // const queue = new sqs.Queue(this, 'InfraQueue', {
-    //   visibilityTimeout: cdk.Duration.seconds(300)
-    // });
+    const origin = origins.S3BucketOrigin.withOriginAccessControl(bucket, {
+      originAccessControl: new cloudfront.S3OriginAccessControl(
+        this,
+        "LucasSiteS3OAC"
+      ),
+      originAccessLevels: [cloudfront.AccessLevel.READ],
+      originPath: "/",
+      connectionTimeout: cdk.Duration.seconds(10),
+      connectionAttempts: 2,
+    });
+
+    // Cloudfront distribution
+    new cloudfront.Distribution(this, "LucasSiteDistribution", {
+      defaultBehavior: {
+        origin: origin,
+      },
+    });
   }
 }
