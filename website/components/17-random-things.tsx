@@ -6,7 +6,7 @@ export default function RandomThings() {
         You don&apos;t know much about me. Let&apos;s fix that. Here are a few
         facts, opinions and perspectives—a peek into my brainium.
       </p>
-      <ol className="list-decimal text-left inline-block">
+      <ol className="list-decimal text-left inline-block marker:text-[rgb(56,182,255)]">
         <li className="mt-2">The best ideas are simple and human.</li>
         <li className="mt-2">I&apos;m 103% addicted to technology.</li>
         <li className="mt-2">
