@@ -24,9 +24,11 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
+        working-directory: ./website
         run: npm ci
 
       - name: Build Next.js application
+        working-directory: ./website
         run: npm run build
 
       - name: Configure AWS credentials
@@ -37,7 +39,7 @@ jobs:
 
       - name: Sync build to S3
         run: |
-          aws s3 sync out/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
+          aws s3 sync website/out/ s3://${{ secrets.AWS_S3_BUCKET }} --delete
 
       - name: Invalidate CloudFront cache
         run: |
