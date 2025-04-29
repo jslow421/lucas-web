@@ -1,3 +1,6 @@
+import ContactButton from "./buttons/contact-button";
+import LinkedInButton from "./buttons/linkedin-button";
+
 export default function About() {
   return (
     <div className="flex flex-col w-full h-full justify-center items-center">
@@ -11,8 +14,8 @@ export default function About() {
         Blending Creative Vision and Strategic Insight to Build Brands That
         Inspire and Deliver Results.
       </div>
-      <div>Contact me</div>
-      <div>My LinkedIn</div>
+      <ContactButton />
+      <LinkedInButton />
     </div>
   );
 }
