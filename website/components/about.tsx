@@ -14,8 +14,10 @@ export default function About() {
         Blending Creative Vision and Strategic Insight to Build Brands That
         Inspire and Deliver Results.
       </div>
-      <ContactButton />
-      <LinkedInButton />
+      <div className="flex flex-row space-x-4 mt-4">
+        <ContactButton />
+        <LinkedInButton />
+      </div>
     </div>
   );
 }
