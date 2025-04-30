@@ -1,12 +1,12 @@
 export default function RandomThings() {
   return (
-    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto text-center p-4">
+    <div className="flex flex-col items-center justify-center max-w-2xl mx-auto text-center px-4 sm:px-6">
       <h1 className="text-2xl font-bold">17 Random Things</h1>
       <p className="text-lg">
         You don&apos;t know much about me. Let&apos;s fix that. Here are a few
         facts, opinions and perspectives—a peek into my brainium.
       </p>
-      <ol className="list-decimal text-left inline-block marker:text-[rgb(56,182,255)]">
+      <ol className="list-decimal text-left w-full max-w-lg pl-8 marker:text-[rgb(56,182,255)]">
         <li className="mt-2">The best ideas are simple and human.</li>
         <li className="mt-2">I&apos;m 103% addicted to technology.</li>
         <li className="mt-2">
