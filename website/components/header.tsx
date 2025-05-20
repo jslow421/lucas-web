@@ -3,7 +3,7 @@
 import { Dialog, DialogPanel } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const navigation = [
   { name: "Work", href: "/work" },
@@ -15,9 +15,29 @@ import Link from "next/link";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [visible, setVisible] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY <= 0) {
+        setVisible(true);
+      } else {
+        setVisible(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="w-full shadow-sm sticky top-0 text-white p-6">
+    <header
+      className={`w-full shadow-sm sticky top-0 text-white p-6 z-50 transition-opacity duration-300 ${
+        visible
+          ? "opacity-100 pointer-events-auto"
+          : "opacity-0 pointer-events-none"
+      }`}
+    >
       <nav
         className="flex items-center justify-between max-w-6xl mx-auto px-4 py-2 text-white"
         aria-label="Top-level navigation"
