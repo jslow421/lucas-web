@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased container align-middle mx-auto flex flex-col items-center`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased container max-w-5xl align-middle mx-auto flex flex-col items-center`}
       >
         <div className="background-texture h-screen w-screen"></div>
         <Header />
