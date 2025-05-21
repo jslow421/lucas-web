@@ -31,8 +31,12 @@ export default function Home() {
         <Experience />
         <RandomThings />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        Footer
+      <footer className="row-start-3 flex flex-col gap-2 items-center justify-center py-8 text-sm text-gray-400 w-full border-t border-[rgba(204,204,204,0.1)] mt-8">
+        <div>© {new Date().getFullYear()} Lucas Slowik. All rights reserved.</div>
+        <div className="flex gap-4">
+          <a href="mailto:lucas@email.com" className="hover:text-blue-400 transition-colors">Contact</a>
+          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+        </div>
       </footer>
     </div>
   );
