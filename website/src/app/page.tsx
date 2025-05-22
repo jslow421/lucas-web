@@ -35,7 +35,7 @@ export default function Home() {
         <div>© {new Date().getFullYear()} Lucas Slowik. All rights reserved.</div>
         <div className="flex gap-4">
           <a href="mailto:lucas@email.com" className="hover:text-blue-400 transition-colors" aria-label="Email Lucas Slowik">Contact</a>
-          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors">LinkedIn</a>
+          <a href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 transition-colors" aria-label="LinkedIn profile of Lucas Slowik">LinkedIn</a>
         </div>
       </footer>
     </div>
