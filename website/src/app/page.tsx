@@ -4,6 +4,7 @@ import About from "../../components/about";
 import BuckBuckleyCaseStudy from "../../components/case-studies/buckbuckley";
 import MrsCaseStudy from "../../components/case-studies/mrs";
 import Experience from "../../components/experience";
+import Footer from "../../components/footer";
 import Headshot from "../../components/headshot";
 import Skills from "../../components/skills";
 import Testimonials from "../../components/testimonials";
@@ -31,9 +32,7 @@ export default function Home() {
         <Experience />
         <RandomThings />
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        Footer
-      </footer>
+      <Footer />
     </div>
   );
 }
