@@ -18,6 +18,9 @@ export default function Header() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
+    // Set initial visibility based on current scroll position
+    setVisible(window.scrollY <= 0);
+
     const handleScroll = () => {
       if (window.scrollY <= 0) {
         setVisible(true);
